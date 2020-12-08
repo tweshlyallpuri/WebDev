@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<style>
+div.dice{
+background-color:grey;
+width: 50px;
+margin: 10px;
+font-size: 30px;
+text-align: center;
+
+float: left;
+clear: none; 
+
+}
+</style>
+<h1>This is Roll Dice</h1>
+<div id="die1" class="dice">0</div>
+<div id="die2" class="dice">0</div>
+<button onclick="rollDice()" style="margin: 10px;">Roll Dice</button>
+<h2 id="status"></h2>
+
+<script>
+    function rollDice()
+    {
+        var d1 = Math.floor(Math.random()*6+1);
+        var d2 = Math.floor(Math.random()*6+1);
+        document.getElementById("die1").innerHTML=d1;
+        document.getElementById("die2").innerHTML=d2;
+        var total = d1+d2;
+        var message = "You have rolled a " + total + ".";
+        if(d1==d2)
+            message += " DOUBLES! You get another turn..."
+        document.getElementById("status").innerHTML = message;
+
+    }
+</script>
