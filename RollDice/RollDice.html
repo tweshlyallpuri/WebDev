@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<head>
 <style>
 div.dice{
 background-color:grey;
@@ -12,13 +13,89 @@ clear: none;
 
 }
 </style>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
 <h1>This is Roll Dice</h1>
 <div id="die1" class="dice">0</div>
 <div id="die2" class="dice">0</div>
 <button onclick="rollDice()" style="margin: 10px;">Roll Dice</button>
 <h2 id="status"></h2>
 
+
+<div class="dice3d" id="die3">
+    <div class="front-side" id="front">
+        <span class="dot dot1"/>
+    </div>
+    <div class="back-side" id="back">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+    </div>
+    <div class="top-side" id="top">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+    </div>
+    <div class="bottom-side" id="bottom">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+    </div>
+    <div class="left-side" id="left">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+        <span class="dot dot5"/>
+    </div>
+    <div class="right-side" id="right">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+        <span class="dot dot5"/>
+        <span class="dot dot6"/>
+    </div>
+</div>
+<div class="dice3d" id="die4">
+    <div class="front-side" id="front">
+        <span class="dot dot1"/>
+    </div>
+    <div class="back-side" id="back">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+    </div>
+    <div class="top-side" id="top">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+    </div>
+    <div class="bottom-side" id="bottom">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+    </div>
+    <div class="left-side" id="left">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+        <span class="dot dot5"/>
+    </div>
+    <div class="right-side" id="right">
+        <span class="dot dot1"/>
+        <span class="dot dot2"/>
+        <span class="dot dot3"/>
+        <span class="dot dot4"/>
+        <span class="dot dot5"/>
+        <span class="dot dot6"/>
+    </div>
+</div>
 <script>
+    var counter = 0;
     function rollDice()
     {
         var d1 = Math.floor(Math.random()*6+1);
@@ -30,6 +107,53 @@ clear: none;
         if(d1==d2)
             message += " DOUBLES! You get another turn..."
         document.getElementById("status").innerHTML = message;
-
+        var transformationAngleX = Math.pow(-1,counter%2)*36*90;
+        var transformationAngleY = Math.pow(-1,counter%2)*36*90;
+        switch(d1)
+        {
+            case 2:
+            transformationAngleX+=180;
+                break;
+            case 3:
+            transformationAngleX-=90;
+                break;
+            case 4:
+            transformationAngleX+=90;
+                break;
+            case 5:
+            transformationAngleY+=90;
+                break;
+            case 6:
+            transformationAngleY-=90;
+                break;
+        }
+        var s1 = 'rotateX(' + transformationAngleX + 'deg) rotateY(' + transformationAngleY + 'deg)';
+        transformationAngleX = Math.pow(-1,counter%2)*36*90;
+        transformationAngleY = Math.pow(-1,counter%2)*36*90;
+        switch(d2)
+        {
+            case 2:
+            transformationAngleX+=180;
+                break;
+            case 3:
+            transformationAngleX-=90;
+                break;
+            case 4:
+            transformationAngleX+=90;
+                break;
+            case 5:
+            transformationAngleY+=90;
+                break;
+            case 6:
+            transformationAngleY-=90;
+                break;
+        }
+        var s2 = 'rotateX(' + transformationAngleX + 'deg) rotateY(' + transformationAngleY + 'deg)';
+        var cube1= document.getElementById("die3");
+        var cube2= document.getElementById("die4");
+        cube1.style.transform = s1;
+        cube2.style.transform = s2;
+        counter++;
     }
 </script>
+</body>
